@@ -60,7 +60,7 @@ const Spinner = ({wheelDataList}: SpinnerArgs) => {
 
 // gets number from 1 to maxNumInclusive
 const getRandomNumberInRange = (maxNumInclusive: number) =>{
-    return (Math.random() * maxNumInclusive) + 1
+    return Math.floor(Math.random() * maxNumInclusive) + 1
 }
 
 const getIndexOfWinningNumber = (winningNum: number, chancesList: number[])=> {
