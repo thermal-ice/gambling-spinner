@@ -25,7 +25,7 @@ const SpinnerInputFields = ({chancesList, updateChancesList}: SpinnerInputFields
             <Box>
                 {chancesList.map((value, index) => (
                     <Stack key={index} direction="row" alignItems="center" spacing={2} mb={0.5}>
-                        <Typography variant="body1">{`Player ${index + 1}:`}</Typography>
+                        <Typography variant="body1">{`Player ${index}:`}</Typography>
                         <TextField
                             value={value}
                             onChange={(e) => handleChange(index, e)}
