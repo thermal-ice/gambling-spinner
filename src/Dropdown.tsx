@@ -1,7 +1,12 @@
+import * as React from "react";
 
-const DropDown = ({numBoxes, setNumBoxes}) => {
+interface DropDownProps {
+    numBoxes: number;
+    setNumBoxes: React.Dispatch<React.SetStateAction<number>>;
+}
+const DropDown = ({numBoxes, setNumBoxes}: DropDownProps) => {
 
-    const handleSelectChange = (event) => {
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setNumBoxes(Number(event.target.value));
     };
 

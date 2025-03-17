@@ -1,6 +1,7 @@
 
 import * as React from "react";
 import "./SpinnerInputFields.css"
+import {ChangeEvent} from "react";
 
 interface SpinnerInputFieldsProps {
     chancesList: number[],
@@ -10,7 +11,7 @@ interface SpinnerInputFieldsProps {
 const SpinnerInputFields = ({chancesList, updateChancesList}: SpinnerInputFieldsProps) => {
 
 
-    const handleChange = (index, e) => {
+    const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
         if (/^\d*$/.test(newValue)) {
             const newValues = [...chancesList];
