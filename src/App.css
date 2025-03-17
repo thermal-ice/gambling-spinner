@@ -4,16 +4,6 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: #242424;
-}
-
-html, body {
-  height: 100%; /* Ensure full height for the page */
-  margin: 0;    /* Remove default margin */
-}
-
-* {
-  color: #F5F5F5;  /* Soft off-white color for all text */
 }
 
 .logo {
