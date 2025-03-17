@@ -29,7 +29,7 @@ function App() {
             <CssBaseline/>
             <div>
                 <div className="spacing">
-                    <label htmlFor="numPlayers">Number of players</label>
+                    <label htmlFor="numPlayers" className="label-spacing">Number of players</label>
                     <DropDown numBoxes={numBoxes} setNumBoxes={setNumBoxes}/>
                 </div>
                 {chancesList.length >= 1 && (

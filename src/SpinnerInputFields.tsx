@@ -1,7 +1,6 @@
-
 import * as React from "react";
 import "./SpinnerInputFields.css"
-import {ChangeEvent} from "react";
+import {Box, Stack, TextField, Typography} from "@mui/material";
 
 interface SpinnerInputFieldsProps {
     chancesList: number[],
@@ -11,7 +10,7 @@ interface SpinnerInputFieldsProps {
 const SpinnerInputFields = ({chancesList, updateChancesList}: SpinnerInputFieldsProps) => {
 
 
-    const handleChange = (index: number, e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (index: number, e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const newValue = e.target.value;
         if (/^\d*$/.test(newValue)) {
             const newValues = [...chancesList];
@@ -22,18 +21,23 @@ const SpinnerInputFields = ({chancesList, updateChancesList}: SpinnerInputFields
 
     return (
         <div className="container">
-            {chancesList.map((value, index) => (
-                <div key={index}  className="input-row" >
-                    <label>{`Player ${index}`}</label>
-                    <input
-                        type="text"
-                        value={value}
-                        onChange={(e) => handleChange(index, e)}
-                        placeholder= "Number of chips"
-                    />
-                </div>
-            ))}
+
+            <Box>
+                {chancesList.map((value, index) => (
+                    <Stack key={index} direction="row" alignItems="center" spacing={2} mb={0.5}>
+                        <Typography variant="body1">{`Player ${index + 1}:`}</Typography>
+                        <TextField
+                            value={value}
+                            onChange={(e) => handleChange(index, e)}
+                            placeholder="Number of chips"
+                            variant="outlined"
+                            sx={{width: 150}}
+                        />
+                    </Stack>
+                ))}
+            </Box>
         </div>
+
 
     );
 }
