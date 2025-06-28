@@ -35,9 +35,9 @@ const SpinnerInputFields = ({chancesList, namesList, updateNamesList, updateChan
 
     return (
         <div className="container">
-            <Box display="flex" gap={1}>
+            <Box display="flex" gap={0.5}>
 
-            <Box mb={4}>
+            <Box mb={4} ml={1}>
                 <Typography>Player Names</Typography>
                 {namesList.map((name, index) => (
                     <Stack key={index} direction="row" alignItems="center" spacing={2} mb={0.5}>
@@ -46,13 +46,13 @@ const SpinnerInputFields = ({chancesList, namesList, updateNamesList, updateChan
                             onChange={(e) => handleNamesChange(index, e)}
                             placeholder={`Player ${index}`}
                             variant="outlined"
-                            sx={{ width: 200 }}
+                            sx={{ maxWidth: 200, minWidth:75 }}
                         />
                     </Stack>
                 ))}
             </Box>
 
-            <Box>
+            <Box mr={1}>
                 <Typography >Chip Counts</Typography>
                 {chancesList.map((chips, index) => (
                     <Stack key={index} direction="row" alignItems="center" spacing={2} mb={0.5}>
@@ -61,7 +61,7 @@ const SpinnerInputFields = ({chancesList, namesList, updateNamesList, updateChan
                             onChange={(e) => handleChancesChange(index, e)}
                             placeholder="Number of chips"
                             variant="outlined"
-                            sx={{ width: 200 }}
+                            sx={{ maxWidth: 200, minWidth:75 }}
                         />
                     </Stack>
                 ))}
