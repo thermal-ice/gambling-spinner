@@ -11,15 +11,35 @@ import DropDown from "./Dropdown.tsx";
 
 function App() {
     const [numBoxes, setNumBoxes] = useState(1)
+    const [namesList, setNamesList] = useState<string[]>([])
     const [chancesList, setChancesList] = useState<number[]>([])
 
+    const handleNumBoxesChange = <T, >(prev: T[]): T[] => {
+        const diff = numBoxes - prev.length
+
+        if (diff == 0) {
+            return prev
+        }
+        // Increase: keep existing values, append undefines
+        if (diff > 0) {
+            return [...prev, ...Array(diff).fill(undefined)]
+        } else {
+            // Decrease: truncate the list
+            return prev.slice(0, numBoxes)
+        }
+    }
+
     useEffect(() => {
-        setChancesList(Array(numBoxes).fill(undefined))
+        setChancesList(handleNumBoxesChange)
+    }, [numBoxes])
+
+    useEffect(() => {
+        setNamesList(handleNumBoxesChange)
     }, [numBoxes])
 
     const dataList: WheelData[] = chancesList
         .map((currChance, currIndex) => ({
-            option: currIndex.toString(),
+            option: getPlayerName(namesList, currIndex),
             optionSize: currChance,
             style: {backgroundColor: BACKGROUND_COLOURS[currIndex]}
         }))
@@ -36,6 +56,8 @@ function App() {
                     <div>
                         <div>
                             <SpinnerInputFields chancesList={chancesList}
+                                                namesList={namesList}
+                                                updateNamesList={setNamesList}
                                                 updateChancesList={setChancesList}></SpinnerInputFields>
                         </div>
 
@@ -49,5 +71,14 @@ function App() {
         </ThemeProvider>
     )
 }
+
+const getPlayerName = (namesList: string[], currIndex: number): string => {
+    const currVal = namesList[currIndex]
+    if (currVal == null || currVal.length == 0) {
+        return `Player ${currIndex}`
+    }
+    return currVal
+}
+
 
 export default App

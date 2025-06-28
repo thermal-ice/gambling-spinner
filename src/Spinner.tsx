@@ -8,7 +8,7 @@ interface SpinnerArgs {
 const Spinner = ({wheelDataList}: SpinnerArgs) => {
     const [mustSpin, setMustSpin] = useState(false);
     const [prizeNumber, setPrizeNumber] = useState(0);
-    const [currentWinner, setCurrentWinnerDisplay] = useState(-1)
+    const [currentWinnerIndex, setCurrentWinnerIndexDisplay] = useState(-1)
 
     const filteredWheelDataList = wheelDataList.map( wheelData => wheelData.optionSize === undefined? 0 : wheelData.optionSize)
 
@@ -17,7 +17,7 @@ const Spinner = ({wheelDataList}: SpinnerArgs) => {
     const chancesList = filteredWheelDataList.map(currChance => currChance === 0 ? 1 : currChance)
 
     const numEntriesTotal = getNumberOfEntries(chancesList)
-    
+
 
     const handleSpinClick = () => {
         if (!mustSpin) {
@@ -32,7 +32,7 @@ const Spinner = ({wheelDataList}: SpinnerArgs) => {
     return (
         <>
             <div>
-                {currentWinner === -1 ? <p><strong>Spin for a winner</strong></p> : <p>Current winner is: <strong>{currentWinner}</strong> </p>}
+                {currentWinnerIndex === -1 ? <p><strong>Spin for a winner</strong></p> : <p>Current winner is: <strong>{wheelDataList[currentWinnerIndex].option}</strong> </p>}
             </div>
 
             <p>Total number of entries is: {getNumberOfEntries(filteredWheelDataList)}</p>
@@ -45,7 +45,7 @@ const Spinner = ({wheelDataList}: SpinnerArgs) => {
 
                 onStopSpinning={() => {
                     setMustSpin(false);
-                    setCurrentWinnerDisplay(prizeNumber)
+                    setCurrentWinnerIndexDisplay(prizeNumber)
                 }}
 
             />
